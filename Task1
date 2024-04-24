@@ -7,7 +7,7 @@ from geometry_msgs.msg import Twist
 import time
 from sensor_msgs.msg import LaserScan
 from std_msgs.msg import Float32
-
+import keyboard
 
 class SpeedOdom(Node):
     def __init__(self):
@@ -74,19 +74,24 @@ class SpeedOdom(Node):
 
         # Print the closest distance to the terminal
         print('Closest Distance (m): {}'.format(closest_distance))
-        if(closest_distance <= 0.4 and object_detected==False):
+        # if(closest_distance <= 0.6 and object_detected==False):
             
             
-            print("Data")
-            twist_msg.linear.x = 0.0
-            time.sleep(5)
-            object_detected ==True
-            if object_detected==True:
-              twist_msg.linear.x = -0.8
-              time.sleep(1)
-              twist_msg.angular.z = -0.5
-              time.sleep(1)
-              object_detected = False
+        #     print("Data")
+        #     twist_msg.linear.x = 0.0
+        #     time.sleep(5)
+        #     object_detected =True
+        # if object_detected==True:
+        #       twist_msg.linear.x = -0.5
+        #       time.sleep(1)
+        #       twist_msg.angular.z = -1.5
+        #       time.sleep(3)
+        #       twist_msg.linear.x = 0.5
+        #       twist_msg.angular.z = 1.5
+        #       object_detected = False
+        if (keyboard.is_pressed('ctrl')):
+         twist_msg.linear.x = 0.0
+         time.wait(5)
             
    
             
