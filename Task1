@@ -33,7 +33,7 @@ class SpeedOdom(Node):
     
 
         # Subscribe to the scan topic
-        self.subscription = self.create_subscription(LaserScan, '/scan', self.lidar_callback, 10)
+        self.subscription = self.create_subscription(LaserScan, '/scan', self.lidar_callback, 1)
 
         # Create a publisher for float topic
         self.publisher_scan_closest = self.create_publisher(Float32, 'scan_closest', 10)
