@@ -11,12 +11,12 @@ from std_msgs.msg import Float32
 import serial 
 
 print("Hello world")
-arduino = serial.Serial(port='/dev/ttyACM0', baudrate=9600, timeout=.1) 
-def ultraSonic(): 
-     time.sleep(0.05) 
-     data = arduino.readline() 
-     value_str= data.decode("utf-8") #from byte to string
-     print("Number received: ",value_str) # printing the value 
+#arduino = serial.Serial(port='/dev/ttyACM0', baudrate=9600, timeout=.1) 
+#def ultraSonic(): 
+    # time.sleep(0.05) 
+     #data = arduino.readline() 
+    # value_str= data.decode("utf-8") #from byte to string
+    #print("Number received: ",value_str) # printing the value 
 class SpeedOdom(Node):
     def __init__(self):
         super().__init__('speed_odom')
