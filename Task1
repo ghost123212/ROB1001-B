@@ -8,14 +8,21 @@ import time
 from sensor_msgs.msg import LaserScan
 from std_msgs.msg import Float32
 # import keyboard
+import serial 
 
+arduino = serial.Serial(port='/dev/ttyUSB0', baudrate=9600, timeout=.1) 
+def ultraSonic(): 
+     time.sleep(0.05) 
+     data = arduino.readline() 
+     value_str= data.decode("utf-8") #from byte to string
+     print("Number received: ",value_str) # printing the value 
 class SpeedOdom(Node):
     def __init__(self):
         super().__init__('speed_odom')
 
         # Subscribe to the odom topic
         self.subscription = self.create_subscription(Odometry, '/odom', self.odom_callback, 10)
-
+        self.subscription = self.create_subscription
         # Create publishers for float topics
         self.linear_speed_publisher = self.create_publisher(Float32, 'speed_linear', 10)
         self.angular_speed_publisher = self.create_publisher(Float32, 'speed_angular', 10)
@@ -51,7 +58,8 @@ class SpeedOdom(Node):
         angular_speed_msg.data = angular_speed
         self.angular_speed_publisher.publish(angular_speed_msg)
 
-   
+ 
+
         
 
     def lidar_callback(self, msg):
@@ -84,9 +92,11 @@ class SpeedOdom(Node):
          object_detected =True
         if object_detected==True:
             #   time.sleep(15)
+              
               for x in range(0, 100):
+               ultraSonic()
                twist_msg.linear.x = 0.0
-               twist_msg.angular.z = 0.5
+               twist_msg.angular.z = 0.7
               object_detected = False
             #    twist_msg.linear.x = -0.5
                
