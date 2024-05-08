@@ -95,7 +95,7 @@ class SpeedOdom(Node):
             #   time.sleep(15)
               
               for x in range(0, 100):
-               ultraSonic()
+              # ultraSonic()
                twist_msg.linear.x = 0.0
                twist_msg.angular.z = 0.7
               object_detected = False
